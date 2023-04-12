@@ -1,52 +1,122 @@
-from tipoHab import TipoHab
-
+import funciones as fun #Importamos las funciones auxiliares para fechas
+from tipoHab import TipoHab #Importamos la clase TipoHab
 
 class Habitacion:
 
-    def __init__(self):
-        self.__tipoHab = TipoHab()
-        self.__status = bool
-        self.__numHab = str
+    def __init__(self, tipo = TipoHab(), numHab = "001"):
+        """
+        Método constructor de la clase
+
+        Params:
+            tipo(objet): Objeto TipoHab
+            numHab(str): Número de la habitación
+        """
+        self.__tipoHab = tipo
+        self.__numHab = numHab
         self.__piso = str
+        self.__fecha = fun.fechas_disponibles()
+        self.__reservaciones = fun.reservaciones()
+        
+        self.set_piso() #Actualizamos el piso
 
+    def get_status(self,date):
+        """
+        Método get para el status de la habitación por fecha
 
-    def set_status(self):
-        self.__status = not self.__status
+        Params:
+            date(date): Objeto date (fecha que queremos revisar)
+        Returns:
+            status(bool): Si la habitación está disponible en dicha fecha
+        """
+        indice = fun.encontrar(self.__fecha,date)
+        status = self.__reservaciones[indice]
+        return status
+        
+    def set_status(self,date):
+        """
+        Método set para el status de la habitación por fecha
+
+        Params:
+            date(date): Objeto date (fecha que queremos revisar)
+        Returns:
+            None.
+        """
+        indice = fun.encontrar(self.__fecha,date)
+        status = self.__reservaciones[indice]
+        self.__reservaciones[indice] = not status
 
     def get_numHab(self):
-        return self.__numHab
-    
-    def get_statys(self):
-        return self.__status
+        """
+        Método get para el número de habitación
 
-    def get_piso(self):
+        Params:
+            None.
+        Returns:
+            self.__numHab(str): Número de la habitación
+        """
+        return self.__numHab
+
+    def set_piso(self):
+        """
+        Método set para el piso de habitación
+
+        Params:
+            None.
+        Returns:
+            None.
+        """
         if self.__numHab[0] == "0":
             self.__piso = "Planta baja"
         elif self.__numHab[0] == "1":
-            self.__piso = "Pirmer piso"
-        else:
+            self.__piso = "Primer piso"
+        elif self.__numHab[0] == "2":
             self.__piso = "Segundo piso"
-            
+
+    def get_piso(self):
+        """
+        Método get para el piso de habitación
+
+        Params:
+            None.
+        Returns:
+            self.__piso(str): Piso en que se encuentra la habitación
+        """
         return self.__piso
 
-    def tipo(self):
-        return self.__tipoHab.get_nombre()
+    def get_tipo(self):
+        """
+        Método get para el tipo de habitación
 
-    def precio(self):
-        return self.__tipoHab.get_precio()
+        Params:
+            None.
+        Returns:
+            self.__tipoHab(objet): Tipo de habitación
+        """
+        return self.__tipoHab
+
+    def fechas_disponibles(self):
+        """
+        Método para obtejer las fechas que tienen disponibilidad de reserva
+
+        Params:
+            None.
+        Returns:
+            disp(list): Fechas disponibles
+        """
+        disp = fun.encontrar2(self.__fecha,self.__reservaciones)
+        return disp
 
 
+    def __str__(self):
+        """
+        Método str de la clase.
 
-
-        
-
-
-
-
-
-
-
-
-
-
-        
+        Params:
+            None.
+        Return
+            str: Los datos de la habitación para el resumen de la misma
+        """
+        return f"Habitación {self.get_numHab()}" + "\n" + \
+               "Piso: " + self.get_piso() + "\n" +\
+               "Tipo: " + self.get_tipo().get_nombre() + "\n" +\
+               "Precio: $" + str(self.get_tipo().get_precio())
