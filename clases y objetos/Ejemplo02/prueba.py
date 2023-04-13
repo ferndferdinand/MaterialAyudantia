@@ -1,14 +1,17 @@
+#Clases creadas
 from hotel import Hotel
 from usuario import Usuario
 from habitacion import Habitacion
 from tipoHab import TipoHab
 
+#funciones adicionales
+from funciones import validarFecha
+from datetime import date
+
 import random as rd
 
-#Lista con los 4 objetos de tipo de habitación
 tipo = [TipoHab(1,400),TipoHab(2,550),TipoHab(3,750),TipoHab(4,1000)]
 
-#Lista para guardar distintos objetos habitación creados de forma aleatoria
 habitaciones = []
 j = 0
 for i in range(2):
@@ -23,15 +26,19 @@ for i in range(2):
     else:
         num = aux + "0" + str(j)
     hab = rd.randrange(1)
+    #Lista de 70 habitaciones para el Hotel, el tipo de habitación es aleatorio
     habitaciones.append(Habitacion(tipo[hab],num))
 
-#Una habitación más de prueba
 habitaciones.append(Habitacion(tipo[2],num))
+    
 
-#Objeto hotel con las habitaciones creadas (Por el momento solo 2)
 hotel = Hotel(habitaciones)
 
-#Menú de opciones para el usuario
+
+fer = Usuario("Fernando Ortega", 22, "ferd.fernando@gmail.com", "5537623552")
+
+fecha = None
+
 while True:
     print("1. Ver tipos de habitaciones disponibles")
     print("2. Reservar habitación")
@@ -39,6 +46,7 @@ while True:
     print("4. Resumen de la reservación")
     print("5. Para salir\n")
     opc = int(input("Ingrese la opción que desea consultar: "))
+    print()
 
     if opc == 1:
         hab = hotel.tipo_habitaciones_dis()
@@ -48,25 +56,28 @@ while True:
         print()
         
     elif opc == 2:
-        pass
+        #índice en en la lista de los tipos de habitaciones
+        hab = int(input("Ingrese el número del tipo de habitación que desea reservar: "))
+        if fecha is None:
+            fecha = input("Ingrese la fecha que desea reservar reservación, el el formato dd-mm-aaaa: ")
+            fecha = validarFecha(fecha)
+            while type(fecha) is str or fecha < date.today():
+                print("Fecha inválida")
+                fecha = input("Ingrese la fecha que desea reservar reservación, el el formato dd-mm-aaaa: ")
+                fecha = validarFecha(fecha)
+        print()
+        cap = hotel.capacidad(hab)
+        hotel.reservar(cap,fecha,fer)
+        print()
+        
 
     elif opc == 3:
-        pass
+        hotel.cancelar(fer)
 
     elif opc == 4:
-        pass
+        hotel.resumen(fer)
 
     else:
         break
 
 
-
-    
-
-
-
-
-
-
-
-    

@@ -14,7 +14,7 @@ class TipoHab:
         self.__capacidad = capacidad
         self.__precio = precio
 
-        self.set_nombre() #Actualizamos el nombre de la habitación 
+        self.set_nombre() #Actualizamo el nombre de la habitación 
 
     def set_nombre(self):
         """
