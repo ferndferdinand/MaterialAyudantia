@@ -5,7 +5,7 @@ from habitacion import Habitacion
 from tipoHab import TipoHab
 
 #funciones adicionales
-from funciones import validarFecha
+from funciones import *
 from datetime import date
 
 import random as rd
@@ -14,7 +14,7 @@ tipo = [TipoHab(1,400),TipoHab(2,550),TipoHab(3,750),TipoHab(4,1000)]
 
 habitaciones = []
 j = 0
-for i in range(2):
+for i in range(70):
     if i < 10:
         aux = "0"
     else:
@@ -25,7 +25,7 @@ for i in range(2):
         j = 0
     else:
         num = aux + "0" + str(j)
-    hab = rd.randrange(1)
+    hab = rd.randrange(4)
     #Lista de 70 habitaciones para el Hotel, el tipo de habitación es aleatorio
     habitaciones.append(Habitacion(tipo[hab],num))
 
@@ -35,7 +35,7 @@ habitaciones.append(Habitacion(tipo[2],num))
 hotel = Hotel(habitaciones)
 
 
-fer = Usuario("Fernando Ortega", 22, "ferd.fernando@gmail.com", "5537623552")
+fer = Usuario("Fernando Ortega", 21, "ferd.fernando@gmail.com", "5574938294")
 
 fecha = None
 
@@ -52,7 +52,7 @@ while True:
         hab = hotel.tipo_habitaciones_dis()
         precio = hotel.precios()
         for i in range(len(hab)):
-            print(f"{i+1}. {hab[i]} ${precio[i]}")
+            print(f"{i+1}. {hab[i]} $" + format(precio[i],",d"))
         print()
         
     elif opc == 2:

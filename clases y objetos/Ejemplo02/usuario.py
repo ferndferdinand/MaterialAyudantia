@@ -39,7 +39,7 @@ class Usuario:
                  "Correo: " + self.__correo + "\n" +\
                  "Telefono: " + self.__telefono + "\n\n"+\
                  habs +\
-                 f"Total: ${self.totalHab()}" + "\n\n"
+                 "Total: $" + format(self.totalHab(), ",d") + "\n\n"
           
           
           
