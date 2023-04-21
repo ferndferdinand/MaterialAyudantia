@@ -71,6 +71,14 @@ class Habitacion:
             self.__piso = "Primer piso"
         elif self.__numHab[0] == "2":
             self.__piso = "Segundo piso"
+        elif self.__numHab[0] == "3":
+            self.__piso = "Tercer piso"
+        elif self.__numHab[0] == "4":
+            self.__piso = "Cuarto piso"
+        elif self.__numHab[0] == "5":
+            self.__piso = "Quinto piso"
+        elif self.__numHab[0] == "3":
+            self.__piso = "Sexto piso"
 
     def get_piso(self):
         """

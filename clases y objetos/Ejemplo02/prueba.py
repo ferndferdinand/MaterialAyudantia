@@ -14,22 +14,34 @@ tipo = [TipoHab(1,400),TipoHab(2,550),TipoHab(3,750),TipoHab(4,1000)]
 
 habitaciones = []
 j = 0
+k = 0
+hab = 0
 for i in range(70):
+    # aux es el dígito que indica el piso 
     if i < 10:
-        aux = "0"
+        aux = "0" #planata baja piso 0, 10 habitaciones
     else:
-        aux = str(i)[0]
+        aux = str(i)[0] 
     j += 1
     if j == 10:
         num = aux + str(j)
         j = 0
     else:
+        #Para dígitos menores a 10
         num = aux + "0" + str(j)
-    hab = rd.randrange(4)
+        
+    if k == 15 and hab == 0:
+        k = 0
+        hab += 1
+    elif k == 15 and hab == 1:
+        k = 0
+        hab += 1
+    elif k == 10 and hab == 2:
+        k = 0
+        hab += 1
+    k += 1
     #Lista de 70 habitaciones para el Hotel, el tipo de habitación es aleatorio
     habitaciones.append(Habitacion(tipo[hab],num))
-
-habitaciones.append(Habitacion(tipo[2],num))
     
 
 hotel = Hotel(habitaciones)
