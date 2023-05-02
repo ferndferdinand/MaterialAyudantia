@@ -1,4 +1,4 @@
-import funciones as fun #Importamos las funciones auxiliares para fechas
+from funciones import * #Importamos las funciones auxiliares para fechas
 from tipoHab import TipoHab #Importamos la clase TipoHab
 
 class Habitacion:
@@ -14,8 +14,8 @@ class Habitacion:
         self.__tipoHab = tipo
         self.__numHab = numHab
         self.__piso = str
-        self.__fecha = fun.fechas_disponibles()
-        self.__reservaciones = fun.reservaciones()
+        self.__fecha = fechas_disponibles()
+        self.__reservaciones = reservaciones()
         
         self.set_piso() #Actualizamos el piso
 
@@ -28,7 +28,7 @@ class Habitacion:
         Returns:
             status(bool): Si la habitación está disponible en dicha fecha
         """
-        indice = fun.encontrar(self.__fecha,date)
+        indice = encontrar(self.__fecha,date)
         status = self.__reservaciones[indice]
         return status
         
@@ -41,7 +41,7 @@ class Habitacion:
         Returns:
             None.
         """
-        indice = fun.encontrar(self.__fecha,date)
+        indice = encontrar(self.__fecha,date)
         status = self.__reservaciones[indice]
         self.__reservaciones[indice] = not status
 
@@ -71,6 +71,14 @@ class Habitacion:
             self.__piso = "Primer piso"
         elif self.__numHab[0] == "2":
             self.__piso = "Segundo piso"
+        elif self.__numHab[0] == "3":
+            self.__piso = "Tercer piso"
+        elif self.__numHab[0] == "4":
+            self.__piso = "Cuarto piso"
+        elif self.__numHab[0] == "5":
+            self.__piso = "Quinto piso"
+        elif self.__numHab[0] == "3":
+            self.__piso = "Sexto piso"
 
     def get_piso(self):
         """
@@ -103,7 +111,7 @@ class Habitacion:
         Returns:
             disp(list): Fechas disponibles
         """
-        disp = fun.encontrar2(self.__fecha,self.__reservaciones)
+        disp = encontrar2(self.__fecha,self.__reservaciones)
         return disp
 
 

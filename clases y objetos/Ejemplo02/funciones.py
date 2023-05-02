@@ -37,10 +37,10 @@ def reservaciones():
     reservaciones = []
     for i in range(31):
         #Con esta parte de código podemos aleatorizar entre True o False para hacer más dinámico nuestro hotel.
-        #valor = rd.randrange(0,2)
+        valor = rd.randrange(0,2)
         #print(bool(valor))
         #append(True)
-        reservaciones.append(True)
+        reservaciones.append(bool(valor))
     return reservaciones
 
 def encontrar(fechas,date):
