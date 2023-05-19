@@ -18,7 +18,7 @@ class Interfaz():
         self.op = [] #Lista de botones de opciones
         
         #Crear canvas sobre la raiz para poder usar el scrollbar
-        self.canvas = Canvas(self.root,width=650,highlightthickness=0)
+        self.canvas = Canvas(self.root,width=650,height=550,highlightthickness=0)
         #Crear scrollbar
         self.scrollbar = ttk.Scrollbar(self.root,orient = "vertical",command = self.canvas.yview)
         self.scrollbar.pack(side = "right",fill = Y)
@@ -112,7 +112,7 @@ class Interfaz():
         self.boton() #Mostramos el botón de terminar examen
 
     def config(self,event):
-        self.canvas.configure(scrollregion = self.canvas.bbox("all"),height=550)
+        self.canvas.configure(scrollregion = self.canvas.bbox("all"))
         
 
 #Mostrar interfaz
